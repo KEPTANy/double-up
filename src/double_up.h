@@ -8,7 +8,7 @@
 #endif
 
 typedef struct GameState {
-    int8_t board[BOARD_SIZE * BOARD_SIZE];
+    uint8_t board[BOARD_SIZE * BOARD_SIZE];
 } GameState;
 
 typedef enum Direction {
