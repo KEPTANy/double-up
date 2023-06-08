@@ -2,6 +2,12 @@
 
 #include <stddef.h>
 
+void game_state_init(GameState *state) {
+    for (size_t i = 0; i < BOARD_SIZE; i++)
+        for (size_t j = 0; j < BOARD_SIZE; j++)
+            state->board[i * BOARD_SIZE + j] = 0;
+}
+
 void shift(GameState *state, Direction direction) {
     switch (direction) {
         case DIR_UP:    shift_up(state);    break;

@@ -18,6 +18,8 @@ typedef enum Direction {
     DIR_LEFT
 } Direction;
 
+void game_state_init(GameState *state);
+
 void shift(GameState *state, Direction direction);
 void shift_up(GameState *state);
 void shift_right(GameState *state);
