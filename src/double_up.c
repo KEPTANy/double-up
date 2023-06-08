@@ -21,7 +21,7 @@ void game_state_set_random(GameState *state) {
     uint64_t empty_cnt = game_state_empty_count(state);
     if (!empty_cnt)
         return;
-    uint64_t pos = rand() % empty_cnt;
+    uint64_t pos = rand() % empty_cnt + 1;
     for (size_t i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
         if (!state->board[i])
             pos--;
