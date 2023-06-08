@@ -2,6 +2,7 @@
 #define DOUBLE_UP_H
 
 #include <inttypes.h>
+#include <stddef.h>
 
 #ifndef BOARD_SIZE
 #define BOARD_SIZE 4
@@ -19,6 +20,7 @@ typedef enum Direction {
 } Direction;
 
 void game_state_init(GameState *state);
+void game_state_set(GameState *state, size_t row, size_t col, uint8_t val);
 
 void shift(GameState *state, Direction direction);
 void shift_up(GameState *state);

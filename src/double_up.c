@@ -1,11 +1,17 @@
 #include "double_up.h"
 
-#include <stddef.h>
+#include <assert.h>
 
 void game_state_init(GameState *state) {
     for (size_t i = 0; i < BOARD_SIZE; i++)
         for (size_t j = 0; j < BOARD_SIZE; j++)
             state->board[i * BOARD_SIZE + j] = 0;
+}
+
+void game_state_set(GameState *state, size_t row, size_t col, uint8_t val) {
+    assert(row < BOARD_SIZE);
+    assert(col < BOARD_SIZE);
+    state->board[row * BOARD_SIZE + col] = val;
 }
 
 void shift(GameState *state, Direction direction) {
