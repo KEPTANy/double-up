@@ -1,0 +1,5 @@
+#include "double_up.h"
+
+int main() {
+    return 0;
+}
