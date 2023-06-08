@@ -98,8 +98,8 @@ void shift_up(GameState *state) {
 
 void shift_right(GameState *state) {
     for (size_t row = 0; row < BOARD_SIZE; row++) {
-        size_t curr = row * (BOARD_SIZE + 1) - 1;
-        for (size_t col = 0; col < BOARD_SIZE; col++) {
+        size_t curr = (row + 1) * BOARD_SIZE - 1;
+        for (size_t col = BOARD_SIZE - 1; col < BOARD_SIZE; col--) {
             if (!state->board[row * BOARD_SIZE + col])
                 continue;
 
