@@ -14,13 +14,13 @@ int main() {
     while (game_state_empty_count(&state)) {
         char c;
         puts("Input one of the following symbols: 'u', 'l', 'd', 'r'");
-        scanf("%c", &c);
+        scanf(" %c", &c);
         switch (c) {
             case 'u': shift(&state, DIR_UP);    break;
             case 'r': shift(&state, DIR_RIGHT); break;
             case 'd': shift(&state, DIR_DOWN);  break;
             case 'l': shift(&state, DIR_LEFT);  break;
-            default: puts("Unable to process the symbol"); break;
+            default: puts("Unable to process the symbol"); continue; break;
         }
         game_state_set_random(&state);
 
