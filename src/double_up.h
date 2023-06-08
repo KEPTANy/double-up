@@ -11,4 +11,11 @@ typedef struct GameState {
     int8_t board[BOARD_SIZE * BOARD_SIZE];
 };
 
+typedef enum Direction {
+    DIR_UP,
+    DIR_RIGHT,
+    DIR_DOWN,
+    DIR_LEFT
+} Direction;
+
 #endif
