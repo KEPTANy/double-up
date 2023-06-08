@@ -1,8 +1,10 @@
 #include "double_up.h"
 
 #include <assert.h>
+#include <stdlib.h>
 
 void game_state_init(GameState *state) {
+    srand(time(NULL));
     for (size_t i = 0; i < BOARD_SIZE; i++)
         for (size_t j = 0; j < BOARD_SIZE; j++)
             state->board[i * BOARD_SIZE + j] = 0;
@@ -12,6 +14,28 @@ void game_state_set(GameState *state, size_t row, size_t col, uint8_t val) {
     assert(row < BOARD_SIZE);
     assert(col < BOARD_SIZE);
     state->board[row * BOARD_SIZE + col] = val;
+}
+
+void game_state_set_random(GameState *state) {
+    uint64_t empty_cnt = game_state_empty_count(state);
+    if (!empty_cnt)
+        return;
+    uint64_t pos = rand() % empty_cnt;
+    for (size_t i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
+        if (!state->board[i])
+            pos--;
+        if (!pos)
+            state->board[i] = (rand() & 1) ? 1 : 2;
+    }
+}
+
+uint64_t game_state_empty_count(GameState *state) {
+    uint64_t cnt;
+    for (size_t i = 0; i < BOARD_SIZE; i++)
+        for (size_t j = 0; j < BOARD_SIZE; j++)
+            if (!state->board[i * BOARD_SIZE + j])
+                cnt++;
+    return cnt;
 }
 
 void shift(GameState *state, Direction direction) {
