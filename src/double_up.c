@@ -1,7 +1,9 @@
 #include "double_up.h"
 
 #include <assert.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 void game_state_init(GameState *state) {
     srand(time(NULL));
@@ -23,17 +25,51 @@ void game_state_set_random(GameState *state) {
     for (size_t i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
         if (!state->board[i])
             pos--;
-        if (!pos)
+        if (!pos) {
             state->board[i] = (rand() & 1) ? 1 : 2;
+            break;
+        }
     }
 }
 
 uint64_t game_state_empty_count(GameState *state) {
-    uint64_t cnt;
+    uint64_t cnt = 0;
     for (size_t i = 0; i < BOARD_SIZE * BOARD_SIZE; i++)
         if (!state->board[i])
             cnt++;
     return cnt;
+}
+
+void game_state_print(GameState *state) {
+    for (size_t i = 0; i < BOARD_SIZE; i++) {
+        for (size_t j = 0; j < BOARD_SIZE; j++)
+            printf("+---");
+        printf("+\n");
+
+        for (size_t j = 0; j < BOARD_SIZE; j++)
+            printf("|   ");
+        printf("|\n");
+
+        for (size_t j = 0; j < BOARD_SIZE; j++) {
+            if (state->board[i * BOARD_SIZE + j] > 99) {
+                printf("|%u", state->board[i * BOARD_SIZE + j]);
+            } else if (state->board[i * BOARD_SIZE + j] > 9) {
+                printf("| %u", state->board[i * BOARD_SIZE + j]);
+            } else if (state->board[i * BOARD_SIZE + j]) {
+                printf("| %u ", state->board[i * BOARD_SIZE + j]);
+            } else {
+                printf("|   ");
+            }
+        }
+        printf("|\n");
+
+        for (size_t j = 0; j < BOARD_SIZE; j++)
+            printf("|   ");
+        printf("|\n");
+    }
+    for (size_t j = 0; j < BOARD_SIZE; j++)
+        printf("+---");
+    printf("+\n");
 }
 
 void shift(GameState *state, Direction direction) {

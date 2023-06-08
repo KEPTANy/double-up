@@ -23,6 +23,7 @@ void game_state_init(GameState *state);
 void game_state_set(GameState *state, size_t row, size_t col, uint8_t val);
 void game_state_set_random(GameState *state);
 uint64_t game_state_empty_count(GameState *state);
+void game_state_print(GameState *state);
 
 void shift(GameState *state, Direction direction);
 void shift_up(GameState *state);
