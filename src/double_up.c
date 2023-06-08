@@ -46,10 +46,6 @@ void game_state_print(GameState *state) {
             printf("+---");
         printf("+\n");
 
-        for (size_t j = 0; j < BOARD_SIZE; j++)
-            printf("|   ");
-        printf("|\n");
-
         for (size_t j = 0; j < BOARD_SIZE; j++) {
             if (state->board[i * BOARD_SIZE + j] > 99) {
                 printf("|%u", state->board[i * BOARD_SIZE + j]);
@@ -61,10 +57,6 @@ void game_state_print(GameState *state) {
                 printf("|   ");
             }
         }
-        printf("|\n");
-
-        for (size_t j = 0; j < BOARD_SIZE; j++)
-            printf("|   ");
         printf("|\n");
     }
     for (size_t j = 0; j < BOARD_SIZE; j++)
